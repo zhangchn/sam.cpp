@@ -12,11 +12,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 if(CMAKE_SOURCE_DIR STREQUAL CMAKE_CURRENT_SOURCE_DIR)
     set(SAM_STANDALONE ON)
+    set(SAM_CLI ON)
 else()
     set(SAM_STANDALONE OFF)
+    set(SAM_CLI OFF)
 endif()
 
 option(SAM_BUILD_EXAMPLES "sam: build examples" ${SAM_STANDALONE})
+option(SAM_BUILD_CLI "sam: build CLI example" ${SAM_CLI})
 
 add_subdirectory(ggml)
 
@@ -29,4 +32,7 @@ target_compile_features(${SAM_LIB} PUBLIC cxx_std_14)
 
 if (SAM_BUILD_EXAMPLES)
     add_subdirectory(examples)
+endif()
+if (SAM_BUILD_CLI)
+    add_subdirectory(cli)
 endif()
