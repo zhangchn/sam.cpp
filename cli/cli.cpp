@@ -76,9 +76,6 @@ int main(int argc, char **argv) {
     if (!params_parse(argc, argv, params)) {
         return 1;
     }
-    // params.model = "checkpoints/ggml-model-f16.bin";
-    // params.fname_inp = "./img.jpg";
-    // params.n_threads = 8;
 
     sam_image_u8 img0;
     std::vector<sam_image_u8> masks;
@@ -95,7 +92,6 @@ int main(int argc, char **argv) {
     float x = img0.nx / 2;
     float y = img0.ny / 2;
     sam_point pt { x, y};
-    // fprintf(stderr, "x: %.2f, y: %.2f", x, y);
     masks = sam_compute_masks(img0, params.n_threads, pt, *state);
     int idx = 0;
     for (const auto& mask : masks) {
