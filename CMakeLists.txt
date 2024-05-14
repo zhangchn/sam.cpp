@@ -25,7 +25,12 @@ add_subdirectory(ggml)
 
 set(SAM_LIB sam.cpp)
 
-add_library(${SAM_LIB} sam.cpp sam.h)
+if(MSVC)
+    add_library(${SAM_LIB} STATIC sam.cpp sam.h)
+else()
+    add_library(${SAM_LIB} sam.cpp sam.h)
+endif()
+
 target_link_libraries(${SAM_LIB} PUBLIC ggml)
 target_include_directories(${SAM_LIB} PUBLIC .)
 target_compile_features(${SAM_LIB} PUBLIC cxx_std_14)
