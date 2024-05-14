@@ -10,9 +10,14 @@ out/
 tmp/
 models/
 models-mnt
+bin/
 
 compile_commands.json
 CMakeSettings.json
+CMakeCache.txt
+CMakeFiles
+Makefile
+*.cmake
 .vs/
 .vscode/
 
